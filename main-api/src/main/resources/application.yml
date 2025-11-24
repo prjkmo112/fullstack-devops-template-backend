@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: main-api
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: rootpasswd
+    pool-size: 100
+
+  jpa:
+    open-in-view: true
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/changeLog.xml
+
+api:
+  prefix: /api
+
+# jwt settings
+jwt:
+  # You should change this
+  secret: gjCFH7fWcn9ltJT4hdIrK7ad2jYlrSn1orfqPkrdiM7NaagD+WFa77oZZCEuZ1Ox8OU7t0FLPAgANMHNBW99cg==
+  expiration: 5000
+  issuer: momo
+  subject_seperator: ","
+
+web:
+  cors:
+    header: "*"
+    method: "*"
+    origin: http://localhost:5173
+
+event-log:
+  common: http://localhost:8091/event/message
+  client:
+    max-connection: 500
+    timeout: 1000
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    url: /api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+server:
+  port: 8080
+
+test-dummy-vars:
+  remote-ip: 8.8.8.8
