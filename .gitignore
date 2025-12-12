@@ -38,3 +38,6 @@ docs/
 ### Embedded DB ###
 common-embedded-data/**/resources/
 *.db
+
+### OS ###
+.DS_Store

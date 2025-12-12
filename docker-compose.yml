@@ -46,19 +46,6 @@ services:
       timeout: 5s
       retries: 20
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: fdtb-kafka-ui
-    ports:
-      - "8989:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
-      # KAFKA_CLUSTERS_0_READONLY: "true"
-    depends_on:
-      kafka:
-        condition: service_healthy
-
   clickhouse:
     image: clickhouse/clickhouse-server:25.3
     container_name: fdtb-clickhouse
