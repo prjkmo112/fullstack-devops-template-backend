@@ -110,8 +110,3 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-
-networks:
-  default:
-    external: true
-    name: superset_default
